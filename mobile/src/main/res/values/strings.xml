@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Smartwatchdata</string>
+
+    <!-- Textos seguros (sin '<' ni '>').
+         Si alguna vez necesitas mostrar '<' o '>', usa &lt; y &gt; -->
+    <string name="phone_ready">Teléfono listo para recibir el ZIP del reloj.</string>
+    <string name="request_notifications">Permitir notificaciones</string>
+    <string name="notif_granted">Permiso de notificaciones concedido.</string>
+    <string name="notif_denied">Permiso de notificaciones denegado.</string>
+</resources>

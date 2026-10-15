@@ -1,0 +1,56 @@
+<!-- mobile/src/main/AndroidManifest.xml -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <!-- Permisos legacy solo para SDK <=28 (ya los tienes con maxSdkVersion) -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Smartwatchdata">
+
+        <activity
+            android:name=".mobile.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Servicio receptor del ZIP vía Channel -->
+        <service
+            android:name=".wear.ZipReceiverService"
+            android:exported="true">
+            <!-- Escucha eventos de Channel y limita al path /zip_transfer -->
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.CHANNEL_EVENT"/>
+                <data android:scheme="wear"
+                    android:host="*"
+                    android:pathPrefix="/zip_transfer"/>
+            </intent-filter>
+
+            <!-- (Opcional pero útil) mantener compatibilidad con otros eventos Wear -->
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER"/>
+            </intent-filter>
+        </service>
+
+        <!-- FileProvider para abrir/compartir el ZIP guardado -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider_mobile"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_mobile"/>
+        </provider>
+
+    </application>
+</manifest>

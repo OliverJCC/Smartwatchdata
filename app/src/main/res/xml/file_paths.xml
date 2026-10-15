@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- /data/user/0/<paquete>/files/captures -->
+    <files-path
+        name="captures"
+        path="captures/" />
+
+    <!-- /data/user/0/<paquete>/files/exports  (opcional: para colocar ZIPs finales) -->
+    <files-path
+        name="exports"
+        path="exports/" />
+
+    <!-- /data/user/0/<paquete>/cache  (útil si generas ZIPs temporales en cache) -->
+    <cache-path
+        name="cache"
+        path="." />
+</paths>
+
